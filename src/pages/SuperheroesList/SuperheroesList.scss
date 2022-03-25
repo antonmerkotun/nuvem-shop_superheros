@@ -1,0 +1,12 @@
+.superheroes-list {
+  margin: 150px auto;
+  //margin-top: 38px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  //grid-column-gap: 28px;
+  max-width: 1200px;
+}
+
+.hero-item {
+  list-style: none;
+}
