@@ -1,5 +1,5 @@
 .superheroes-list {
-  margin: 150px auto;
+  margin: 100px auto;
   //margin-top: 38px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -9,4 +9,5 @@
 
 .hero-item {
   list-style: none;
+  text-align: center;
 }

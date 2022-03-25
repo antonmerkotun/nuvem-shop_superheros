@@ -1,5 +1,17 @@
 .card {
   height: 300px;
   width: 200px;
-  border: 1px solid black;
+  border: 1px solid rgba(45, 45, 45, 0.51);
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &-body {
+
+    &_image {
+      height: 250px;
+      width: 200px;
+    }
+  }
 }

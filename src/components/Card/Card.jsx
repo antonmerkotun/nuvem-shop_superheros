@@ -1,15 +1,19 @@
 import React from 'react';
 import "./Card.scss"
+import Avatar from "../Avatar/Avatar";
 
-function Card({nickname, image}) {
+function Card({nickname, avatar}) {
     return (
         <div className="card">
             <div className="card-header">
                 <p>{nickname}</p>
-                {/*{console.log(image)}*/}
             </div>
             <div className="card-body">
-                <div className="card-body_image" style={{backgroundImage: `${image}`}}/>
+                {avatar.length >= 1 &&
+                    <div className="card-body_image">
+                        <Avatar avatar={avatar[0].photo}/>
+                    </div>
+                }
             </div>
         </div>
     );

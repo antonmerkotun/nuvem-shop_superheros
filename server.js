@@ -19,10 +19,21 @@ const PORT = process.env.PORT || 3005
 
 client.connect(err => {
     const heroesCollections = client.db("Superheros-shop").collection("Superheros");
+    const photosCollections = client.db("Superheros-shop").collection("photos");
 
 
     app.get('/heroes', async function (req, res) {
         const findResult = await heroesCollections.find({}).toArray();
+        res.send(findResult);
+    })
+
+    app.get('/heroes-photos', async function (req, res) {
+        const findResult = await photosCollections.find({}).toArray();
+        res.send(findResult);
+    })
+
+    app.get('/avatar', async function (req, res) {
+        const findResult = await photosCollections.find({avatar: true}).toArray();
         res.send(findResult);
     })
 
