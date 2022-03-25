@@ -50,6 +50,7 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
                 originDescription={hero.originDescription}
                 realName={hero.realName}
                 superpowers={hero.superpowers}
+                images={photosData.data.filter(photo => photo.hero === hero._id)}
                 closeModal={closeModal}/>}
         </>
     );

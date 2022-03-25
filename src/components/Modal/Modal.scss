@@ -25,6 +25,19 @@
 
   &-image {
     width: 50%;
+    height: 80%;
+
+    &-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      height: 25%;
+      width: 100%;
+    }
+
+    &-mini {
+      height: 100%;
+      width: 100%;
+    }
   }
 
   &-info {

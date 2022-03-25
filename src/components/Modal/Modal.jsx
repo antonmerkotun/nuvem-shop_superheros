@@ -4,14 +4,20 @@ import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 
 
-function Modal({id, closeModal, avatar, image, nickName, realName, originDescription, superpowers, catchPhrase}) {
+function Modal({id, closeModal, avatar, images, nickName, realName, originDescription, superpowers, catchPhrase}) {
     return (
         <div className="modal" onClick={closeModal} key={id}>
-            {console.log(image)}
             <div className="modal-body">
                 <div className="modal-image">
                     <Avatar avatar={avatar}/>
-                    <div>{image}</div>
+                    <div className="modal-image-list">
+                        {images.map(image => {
+                            console.log(image)
+                           return <div className="modal-image-mini" key={image._id}>
+                               <Avatar avatar={image.photo}/>
+                           </div>
+                        })}
+                    </div>
                 </div>
                 <div className="modal-info">
                     <div className="modal_nickname modal-info-block">
