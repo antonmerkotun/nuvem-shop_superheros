@@ -6,7 +6,7 @@ function Card({id, nickName, avatar}) {
     return (
         <div className="card">
             <div className="card-header">
-                <p>{nickName}</p>
+                <p className="card-header-nick_name" id={id}>{nickName}</p>
             </div>
             <div className="card-body">
                 {avatar.length >= 1 &&

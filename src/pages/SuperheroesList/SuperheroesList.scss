@@ -1,14 +1,23 @@
 .superheroes-list {
   margin: 100px auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-column-gap: 28px;
+  //display: grid;
+  //grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  //grid-column-gap: 28px;
+  display: flex;
   max-width: 1200px;
+  height: 300px;
+  overflow: hidden;
+
+  &_button-page {
+    display: flex;
+    justify-content: space-around;
+  }
 }
 
 .hero-item {
+  margin-right: 50px;
   list-style: none;
   text-align: center;
   height: 300px;
-  width: 200px;
+  min-width: 200px;
 }

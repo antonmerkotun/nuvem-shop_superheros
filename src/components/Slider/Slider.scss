@@ -1,0 +1,22 @@
+.slider {
+  margin-top: 100px;
+
+  &-container {
+
+  }
+
+  &-line {
+    display: flex;
+    border: 1px solid black;
+    overflow: hidden;
+  }
+
+  &-block {
+    height: 300px;
+    min-width: 1200px;
+  }
+
+  &-button {
+
+  }
+}
