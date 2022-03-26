@@ -1,5 +1,4 @@
 .slider {
-  margin-top: 100px;
 
   &-container {
 
@@ -7,16 +6,20 @@
 
   &-line {
     display: flex;
-    border: 1px solid black;
-    overflow: hidden;
+    justify-content: space-between;
+    width: 1200px;
   }
 
   &-block {
+    margin-right: 50px;
+    text-align: center;
     height: 300px;
-    min-width: 1200px;
+    min-width: 200px;
   }
 
   &-button {
-
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
   }
 }

@@ -10,7 +10,6 @@ import {getHeroesAction} from "./redux/heroes/getHeroesAction";
 import CreateSuperhero from "./pages/CreateSuperhero/CreateSuperhero";
 import {getPhotosAction} from "./redux/photos/getPhotosAction";
 import {getAvatarAction} from "./redux/avatar/getAvatarAction";
-import Slider from "./components/Slider/Slider";
 
 
 
@@ -34,7 +33,7 @@ function App() {
                     <Header/>
                     <Routes>
                         <Route exact path="/" element={<SuperheroesList heroesData={heroesData} photosData={photosData} avatarData={avatarData}/>}/>
-                        <Route exact path="/create-hero" element={<Slider items={heroesData.data}/>}/>
+                        <Route exact path="/create-hero" element={<CreateSuperhero/>}/>
                     </Routes>
                 </div>
             </div>

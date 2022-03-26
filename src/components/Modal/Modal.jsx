@@ -1,8 +1,9 @@
 import React from 'react';
 import "./Modal.scss"
+
+//components
 import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
-
 
 function Modal({
                    id,
@@ -23,7 +24,7 @@ function Modal({
                     <Avatar avatar={avatar}/>
                     <div className="modal-image-list">
                         {images.map(image => {
-                            return <div className="modal-image-mini" key={image._id} onClick={photoSelection}>
+                            return <div className="modal-image-mini" key={image._id} id={image._id} onClick={photoSelection}>
                                 <Avatar avatar={image.photo} id={image._id}/>
                             </div>
                         })}
@@ -46,7 +47,8 @@ function Modal({
                         <span className="modal-info-text">Superpowers:</span>
                         {superpowers.map(superpower => {
                             return <li key={superpower}>{superpower}</li>
-                        })}</div>
+                        })}
+                    </div>
                     <div className="modal_catchPhrase modal-info-block">
                         <span className="modal-info-text">Catch Phrase:</span>
                         <span> {catchPhrase}</span>
