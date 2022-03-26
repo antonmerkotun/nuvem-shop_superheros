@@ -1,8 +1,14 @@
 import React from 'react';
+import "./CreateSuperhero.scss"
+import Form from "../../components/Form/Form";
 
-function CreateSuperhero(props) {
+
+function CreateSuperhero() {
     return (
-        <div>CreateSuperhero</div>
+        <div className="create-superhero">
+            <h1>Create new superhero</h1>
+            <Form/>
+        </div>
     );
 }
 

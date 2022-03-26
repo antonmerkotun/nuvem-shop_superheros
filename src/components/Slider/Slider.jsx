@@ -55,12 +55,12 @@ function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, imageDat
                         </div>
                         <div className="slider-button">
                             <Button text={buttonTextPrev} onClick={nextPage}/>
+                            <span>{initialValue+1} / {data.length}</span>
                             <Button text={buttonTextNext} onClick={prevPage}/>
                         </div>
                     </div>
                 </div>
             }
-
         </>
     );
 }

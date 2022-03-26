@@ -54,7 +54,7 @@ function Modal({
                         <span> {catchPhrase}</span>
                     </div>
                     <div className="modal-button">
-                        <Button text="Edit" width="150px" height="30px"/>
+                        <Button text="Edit" width="150px" height="30px" color="#ffffff"/>
                     </div>
                     <div onClick={closeModal}>
                         <button className="modal-button-close">Close</button>
