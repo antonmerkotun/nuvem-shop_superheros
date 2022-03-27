@@ -17,51 +17,11 @@
   &-body {
     height: 70vh;
     width: 50vw;
-    //background-color: #ffffff;
-    //color: #000000;
     display: flex;
     position: relative;
   }
 
-  &-image {
-    width: 50%;
-    height: 80%;
-
-    &-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      height: 25%;
-      width: 100%;
-    }
-
-    &-mini {
-      height: 100%;
-      width: 100%;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  &-info {
-    padding: 0 10px;
-    width: 50%;
-
-    &-text {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    &-block {
-      margin-top: 10px;
-    }
-  }
-
   &-button {
-    position: absolute;
-    bottom: 10px;
-    right: 16%;
 
     &-close {
       position: absolute;

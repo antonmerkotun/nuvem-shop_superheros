@@ -4,11 +4,14 @@ import "./SuperheroesList.scss"
 //components
 import Modal from "../../components/Modal/Modal";
 import Slider from "../../components/Slider/Slider";
+import CardInfo from "../../components/CardInfo/CardInfo";
+import Form from "../../components/Form/Form";
 
 function SuperheroesList({heroesData, avatarData, photosData}) {
-    const [modal, setModal] = useState(false)
+    const [modal, setModal] = useState("close")
     const [hero, setHero] = useState('')
     const [avatar, setAvatar] = useState('')
+    const [modalChildren, setModalChildren] = useState('')
 
     const openModal = (event) => {
         heroesData.data.forEach(hero => {
@@ -21,12 +24,13 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
                 setAvatar(avatar)
             }
         })
-        setModal(true)
+        setModalChildren("info")
+        setModal("info")
     }
 
     const closeModal = (event) => {
         if (event.target.className === "modal" || event.target.className === "modal-button-close") {
-            setModal(false)
+            setModal("close")
         }
     }
 
@@ -36,6 +40,10 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
                 setAvatar(photo)
             }
         })
+    }
+
+    const editForm = () => {
+        setModalChildren("editForm")
     }
 
     return (
@@ -52,19 +60,38 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
                     />
                 </div>
             </>
-            {modal === true &&
+            {modal === "info" &&
                 <Modal
                     id={hero._id}
-                    avatar={avatar.photo}
-                    nickName={hero.nickName}
-                    catchPhrase={hero.catchPhrase}
-                    originDescription={hero.originDescription}
-                    realName={hero.realName}
-                    superpowers={hero.superpowers}
-                    images={photosData.data.filter(photo => photo.hero === hero._id)}
                     closeModal={closeModal}
-                    photoSelection={photoSelection}
-                />}
+                >
+                    {modalChildren === "info" &&
+                        <CardInfo
+                            avatar={avatar.photo}
+                            nickName={hero.nickName}
+                            catchPhrase={hero.catchPhrase}
+                            originDescription={hero.originDescription}
+                            realName={hero.realName}
+                            superpowers={hero.superpowers}
+                            images={photosData.data.filter(photo => photo.hero === hero._id)}
+                            photoSelection={photoSelection}
+                            editForm={editForm}
+                        />
+                    }
+                    {modalChildren === "editForm" &&
+                        <Form
+                            create={false}
+                            setModal={setModal}
+                            avatar={avatar.photo}
+                            nickName={hero.nickName}
+                            catchPhrase={hero.catchPhrase}
+                            originDescription={hero.originDescription}
+                            realName={hero.realName}
+                            superpowers={hero.superpowers}
+                            images={photosData.data.filter(photo => photo.hero === hero._id)}
+                        />
+                    }
+                </Modal>}
         </>
     );
 }

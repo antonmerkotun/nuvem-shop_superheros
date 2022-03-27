@@ -1,6 +1,63 @@
 .form {
-  height: 500px;
-  width: 500px;
-  border: 1px solid #000000;
-  background-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  //padding: 20px;
+  position: relative;
+
+  &-body {
+    padding: 50px;
+
+    &-block {
+      align-items: center;
+      text-align: center;
+      margin-top: 10px;
+
+      &-image {
+        display: flex;
+        justify-content: space-between;
+
+      }
+      &-avatar {
+        padding: 20px;
+        height: 30vh;
+        width: 10vw;
+      }
+    }
+  }
+
+  &-input {
+
+    //height: 100%;
+    width: 100%;
+    margin-left: 20px;
+    border-color: #ffffff;
+  }
+
+  &-submit {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    height: 50px;
+    width: 130px;
+    font-size: 30px;
+    border-radius: 10px;
+  }
+
+  &-textarea {
+    height: 60px;
+    background-color: transparent;
+    color: #ffffff;
+  }
+
+  &-button {
+    font-size: 30px;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
+
+  &-superpower {
+    margin-top: 5px;
+    height: 20px;
+  }
 }

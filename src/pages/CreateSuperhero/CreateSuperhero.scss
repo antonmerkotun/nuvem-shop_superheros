@@ -1,5 +1,11 @@
 .create-superhero {
-  width: 500px;
-  margin: 100px auto 0;
-  text-align: center;
+  height: 80vh;
+  //width: 50vw;
+  margin: 0 auto;
+  //text-align: center;
+  color: #000000;
+  font-size: 20px;
+  &-title {
+    text-align: center;
+  }
 }
