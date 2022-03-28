@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 
 function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, imageData, openModal}) {
     const [data, setData] = useState([])
-    const [initialValue, setInitialValue] = useState(0)
+    const [numberPage, setNumberPage] = useState(null)
 
 
     useEffect(() => {
@@ -19,20 +19,16 @@ function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, imageDat
     }, [arrayData])
 
     const nextPage = () => {
-        let num = initialValue
-        num = num - 1
-        setInitialValue(num)
-        if (num <= data.length) {
-            setInitialValue(0)
+        setNumberPage(numberPage + 1)
+        if (numberPage >= data.length - 1) {
+            setNumberPage(numberPage)
         }
     }
 
     const prevPage = () => {
-        let num = initialValue
-        num = num + 1
-        setInitialValue(num)
-        if (num >= data.length) {
-            setInitialValue(data.length - 1)
+        setNumberPage(numberPage - 1)
+        if (numberPage <= 0) {
+            setNumberPage(numberPage)
         }
     }
 
@@ -42,20 +38,20 @@ function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, imageDat
                 <div className="slider">
                     <div className="slider-container">
                         <div className="slider-line">
-                            {data[initialValue].map(item => {
+                            {data[+numberPage].map(item => {
                                 return <div className="slider-block" key={item._id} id={item._id} onClick={openModal}>
                                     <Card
-                                    id={item._id}
-                                    nickName={item.nickName}
-                                    avatar={imageData.data.filter(avatar => item._id === avatar.hero)}
+                                        id={item._id}
+                                        nickName={item.nickName}
+                                        avatar={imageData.data.filter(avatar => item._id === avatar.hero)}
                                     />
                                 </div>
                             })}
                         </div>
                         <div className="slider-button">
-                            <Button text={buttonTextPrev} onClick={nextPage}/>
-                            <span>{initialValue+1} / {data.length}</span>
-                            <Button text={buttonTextNext} onClick={prevPage}/>
+                            <Button text={buttonTextPrev} onClick={prevPage}/>
+                            <span>{numberPage + 1} / {data.length}</span>
+                            <Button text={buttonTextNext} onClick={nextPage}/>
                         </div>
                     </div>
                 </div>
