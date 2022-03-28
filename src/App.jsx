@@ -30,7 +30,7 @@ function App() {
         <BrowserRouter>
             <div className="app">
                 <div className="container">
-                    <Header/>
+                    {/*<Header/>*/}
                     <Routes>
                         <Route exact path="/" element={<SuperheroesList heroesData={heroesData} photosData={photosData} avatarData={avatarData}/>}/>
                         <Route exact path="/create-hero" element={<CreateSuperhero/>}/>

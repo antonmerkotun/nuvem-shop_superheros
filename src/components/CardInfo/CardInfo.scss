@@ -39,6 +39,28 @@
   &-button {
     position: absolute;
     bottom: 10px;
-    right: 16%;
+    right: 0;
   }
 }
+
+.description-textarea {
+  //height: 100%;
+  width: 100%;
+  background-color: transparent;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.add-avatar {
+  height: 100%;
+  width: 100%;
+}
+
+.delete-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  color: white;
+}
+

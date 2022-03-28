@@ -17,5 +17,9 @@ export const SET_HERO_FAILURE = "SET_HERO_FAILURE"
 
 export const SET_HERO = "SET_HERO"
 
+export const POST_HERO_STARTED = "POST_HERO_STARTED"
+export const POST_HERO_SUCCESS = "POST_HERO_SUCCESS"
+export const POST_HERO_FAILURE = "POST_HERO_FAILURE"
+
 
 

@@ -37,6 +37,17 @@ client.connect(err => {
         res.send(findResult);
     })
 
+    //POST
+
+
+    app.post('/add/hero', async function (req, res) {
+        const newHeroData = req.body
+        // const id = req.params.id
+        console.log(newHeroData)
+        const hero = await heroesCollections.insertOne(newHeroData);
+        res.sendStatus(200);
+    })
+
     app.listen(PORT, () => {
         console.log(`Connected server to port ${PORT}`)
     });

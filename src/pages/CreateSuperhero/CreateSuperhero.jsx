@@ -7,7 +7,7 @@ function CreateSuperhero() {
     return (
         <div className="create-superhero">
             <h1 className="create-superhero-title">Create new superhero</h1>
-            <Form create={true}/>
+            {/*<Form create={true}/>*/}
         </div>
     );
 }
