@@ -6,11 +6,12 @@ const initialState = {
     // error: null
 };
 
-export  function postHeroReducer(state = initialState, action) {
+export  function deleteHeroReducer(state = initialState, action) {
     switch (action.type) {
         case POST_HERO_STARTED:
             return {
                 ...state,
+                // loading: true
             };
         case POST_HERO_SUCCESS:
             return {
@@ -19,6 +20,8 @@ export  function postHeroReducer(state = initialState, action) {
         case POST_HERO_FAILURE:
             return {
                 ...state,
+                // loading: false,
+                // error: action.payload.error
             };
         default:
             return state;

@@ -32,7 +32,7 @@ const postHeroSuccess = heroes => ({
     type: POST_HERO_SUCCESS,
     payload: heroes
 })
-
+//
 const postHeroFailure = error => ({
     type: POST_HERO_FAILURE,
     payload: {

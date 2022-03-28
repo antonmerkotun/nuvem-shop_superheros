@@ -40,7 +40,6 @@ function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, imageDat
         <>
             {data.length >= 1 &&
                 <div className="slider">
-
                     <div className="slider-container">
                         <div className="slider-line">
                             {data[initialValue].map(item => {
