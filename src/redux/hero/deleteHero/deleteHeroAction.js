@@ -5,7 +5,7 @@ export const deleteHeroAction = (id) => {
     console.log(id)
     return async dispatch => {
         dispatch(deleteHeroStarted())
-        fetch(`/delete/hero${id}`, {
+        fetch(`/delete/hero/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

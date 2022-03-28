@@ -6,9 +6,10 @@ import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import {useDispatch, useSelector} from "react-redux";
-import {setHeroAction} from "../../redux/hero/setHero/setHeroAction";
 import {postHeroAction} from "../../redux/hero/postHero/postHeroAction";
 import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
+import {deleteHeroAction} from "../../redux/hero/deleteHero/deleteHeroAction";
+import Upload from "../Upload/Upload";
 
 
 function CardInfo({
@@ -40,7 +41,6 @@ function CardInfo({
     const editForm = () => {
         setCardState("edit")
     }
-    // console.log(hero)
 
     const saveHero = () => {
         const objectHero = {
@@ -56,15 +56,13 @@ function CardInfo({
         }
 
         setModal("close")
-        // dispatch(setHeroAction(objectHero))
-        console.log(setCard)
     }
 
 
     const deleteHero = () => {
         setModal("close")
-
-        console.log(hero)
+        dispatch(deleteHeroAction(hero._id))
+        dispatch(getHeroesAction())
     }
 
     return (
@@ -75,9 +73,9 @@ function CardInfo({
                     <>
                         {avatar === '' ?
                             <>
-                                <input type="file" onChange={(e) => {
-                                    setAvatarInput(e.target.value)
-                                }}/>
+                                {/*<input type="file" onChange={(e) => {*/}
+                                {/*    setAvatarInput(e.target.value)*/}
+                                {/*}}/>*/}
                             </> :
                             <>
                                 <Avatar avatar={avatar}/>
@@ -88,9 +86,10 @@ function CardInfo({
                 }
                 {cardState === "create" &&
                     <>
-                        <input type="file" onChange={(e) => {
-                            setAvatarInput(e.target.value)
-                        }}/>
+                        <Upload text="Avatar" avatar={true}/>
+                        {/*<input type="file" onChange={(e) => {*/}
+                        {/*    setAvatarInput(e.target.value)*/}
+                        {/*}}/>*/}
                     </>
                 }
                 <div className="card_info-image-list">
@@ -114,18 +113,18 @@ function CardInfo({
                 </div>
                 {cardState === "create" &&
                     <>
-                        <input type="file" onChange={(e) => {
-                            setImg(e.target.value)
-                        }}/>
-                        <input type="file" onChange={(e) => {
-                            setImg(e.target.value)
-                        }}/>
-                        <input type="file" onChange={(e) => {
-                            setImg(e.target.value)
-                        }}/>
-                        <input type="file" onChange={(e) => {
-                            setImg(e.target.value)
-                        }}/>
+                        {/*<input type="file" onChange={(e) => {*/}
+                        {/*    setImg(e.target.value)*/}
+                        {/*}}/>*/}
+                        {/*<input type="file" onChange={(e) => {*/}
+                        {/*    setImg(e.target.value)*/}
+                        {/*}}/>*/}
+                        {/*<input type="file" onChange={(e) => {*/}
+                        {/*    setImg(e.target.value)*/}
+                        {/*}}/>*/}
+                        {/*<input type="file" onChange={(e) => {*/}
+                        {/*    setImg(e.target.value)*/}
+                        {/*}}/>*/}
                     </>
                 }
             </div>
