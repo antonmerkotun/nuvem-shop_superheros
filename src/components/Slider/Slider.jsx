@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "./Slider.scss"
+
+//components
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 
