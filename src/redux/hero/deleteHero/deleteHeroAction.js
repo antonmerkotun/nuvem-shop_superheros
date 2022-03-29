@@ -2,7 +2,6 @@ import {DELETE_HERO_STARTED, DELETE_HERO_SUCCESS, DELETE_HERO_FAILURE} from "../
 
 
 export const deleteHeroAction = (id) => {
-    console.log(id)
     return async dispatch => {
         dispatch(deleteHeroStarted())
         fetch(`/delete/hero/${id}`, {

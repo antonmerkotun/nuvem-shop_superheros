@@ -1,60 +1,76 @@
 import React, {useState} from 'react';
 import "./CardInfo.scss"
+import {useDispatch} from "react-redux";
 
 //components
 import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import {useDispatch, useSelector} from "react-redux";
 import {postHeroAction} from "../../redux/hero/postHero/postHeroAction";
 import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
 import {deleteHeroAction} from "../../redux/hero/deleteHero/deleteHeroAction";
 import Upload from "../Upload/Upload";
+import {patchHeroAction} from "../../redux/hero/patchHero/patchHeroAction";
+import {resetAvatarAction} from "../../redux/avatar/resetAvatar/resetAvatarAction";
+import {setAvatarAction} from "../../redux/avatar/setAvatar/setAvatarAction";
+import {getAvatarAction} from "../../redux/avatar/getAvatarAction";
 
 
 function CardInfo({
                       hero,
-                      nickName,
-                      realName,
-                      originDescription,
-                      catchPhrase,
+                      nickName = '',
+                      realName = '',
+                      originDescription = '',
+                      catchPhrase = '',
                       avatar = '',
                       superpowers = [],
                       images = [],
                       photoSelection,
                       setCard,
                       setModal,
+                      avatarImage,
+                      setAvatar,
                   }) {
-
+    const dispatch = useDispatch()
     const [cardState, setCardState] = useState(setCard)
     const [nickNameInput, setNickNameInput] = useState(nickName)
     const [realNameInput, setRealNameInput] = useState(realName)
     const [originDescriptionInput, setOriginDescriptionInput] = useState(originDescription)
     const [catchPhraseInput, setCatchPhraseInput] = useState(catchPhrase)
-    const [avatarInput, setAvatarInput] = useState(avatar)
-    const [img, setImg] = useState('')
-
-
-    const dispatch = useDispatch()
-    const setHero = useSelector(state => state.setHero)
+    const [submitImage, setSubmitImage] = useState(false)
 
     const editForm = () => {
         setCardState("edit")
     }
 
-    const saveHero = () => {
-        const objectHero = {
-            nickName: nickNameInput,
-            realName: realNameInput,
-            originDescription: originDescriptionInput,
-            catchPhrase: catchPhraseInput,
-            superpowers: superpowers
-        }
+    const saveHero = async () => {
         if (setCard === "create") {
+            const objectHero = {
+                nickName: nickNameInput,
+                realName: realNameInput,
+                originDescription: originDescriptionInput,
+                catchPhrase: catchPhraseInput,
+                superpowers: superpowers,
+            }
             dispatch(postHeroAction(objectHero))
-            dispatch(getHeroesAction())
+        }
+        if (cardState === "edit") {
+            const objectHero = {
+                idOb: hero._id,
+                nickName: nickNameInput,
+                realName: realNameInput,
+                originDescription: originDescriptionInput,
+                catchPhrase: catchPhraseInput,
+                superpowers: superpowers,
+            }
+            dispatch(resetAvatarAction(hero._id))
+            dispatch(setAvatarAction(avatarImage._id))
+            dispatch(patchHeroAction(objectHero))
         }
 
+        dispatch(getHeroesAction())
+        dispatch(getAvatarAction())
+        setAvatar('')
         setModal("close")
     }
 
@@ -68,28 +84,10 @@ function CardInfo({
     return (
         <>
             <div className="card_info-image">
-                {cardState === "info" && <Avatar avatar={avatar}/>}
-                {cardState === "edit" &&
-                    <>
-                        {avatar === '' ?
-                            <>
-                                {/*<input type="file" onChange={(e) => {*/}
-                                {/*    setAvatarInput(e.target.value)*/}
-                                {/*}}/>*/}
-                            </> :
-                            <>
-                                <Avatar avatar={avatar}/>
-                                <button className="delete-avatar">Delete avatar</button>
-                            </>
-                        }
-                    </>
-                }
+                <Avatar avatar={avatar}/>
                 {cardState === "create" &&
                     <>
-                        <Upload text="Avatar" avatar={true}/>
-                        {/*<input type="file" onChange={(e) => {*/}
-                        {/*    setAvatarInput(e.target.value)*/}
-                        {/*}}/>*/}
+                        <Upload text="Avatar" avatar={true} setSubmitImage={setSubmitImage}/>
                     </>
                 }
                 <div className="card_info-image-list">
@@ -111,22 +109,6 @@ function CardInfo({
                     }
 
                 </div>
-                {cardState === "create" &&
-                    <>
-                        {/*<input type="file" onChange={(e) => {*/}
-                        {/*    setImg(e.target.value)*/}
-                        {/*}}/>*/}
-                        {/*<input type="file" onChange={(e) => {*/}
-                        {/*    setImg(e.target.value)*/}
-                        {/*}}/>*/}
-                        {/*<input type="file" onChange={(e) => {*/}
-                        {/*    setImg(e.target.value)*/}
-                        {/*}}/>*/}
-                        {/*<input type="file" onChange={(e) => {*/}
-                        {/*    setImg(e.target.value)*/}
-                        {/*}}/>*/}
-                    </>
-                }
             </div>
             <div className="card_info-info">
                 <div className="card_info_nickname card_info-info-block">

@@ -2,7 +2,7 @@ import {POST_HERO_STARTED, POST_HERO_SUCCESS, POST_HERO_FAILURE} from "../../typ
 
 
 export const postHeroAction = (body) => {
-    console.log()
+    console.log(body)
     return async dispatch => {
         dispatch(postHeroStarted())
         fetch("/add/hero", {

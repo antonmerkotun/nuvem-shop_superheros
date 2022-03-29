@@ -76,6 +76,8 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
                         photoSelection={photoSelection}
                         setCard="info"
                         setModal={setModal}
+                        avatarImage={avatar}
+                        setAvatar={setAvatar}
                     />
                 </Modal>}
             {modal === "create" &&

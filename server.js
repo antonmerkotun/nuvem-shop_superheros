@@ -1,7 +1,6 @@
 const {cloudinary} = require('./cloudinary')
 const express = require('express');
 const {MongoClient, ObjectId} = require('mongodb');
-const path = require('path')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
@@ -21,6 +20,8 @@ client.connect(err => {
     const photosCollections = client.db("Superheros-shop").collection("photos");
 
 
+//GET
+
     app.get('/heroes', async function (req, res) {
         const findResult = await heroesCollections.find({}).toArray();
         res.send(findResult);
@@ -36,8 +37,17 @@ client.connect(err => {
         res.send(findResult);
     })
 
-    //POST
+    app.get('/api/images', async (req, res) => {
+        const {resources} = await cloudinary.search
+            .expression('folder:dev_setups')
+            .sort_by('public_id', 'desc')
+            .max_results(30)
+            .execute();
+        res.send(resources);
+    });
 
+
+//POST
 
     app.post('/add/hero', async function (req, res) {
         const newHeroData = req.body
@@ -45,38 +55,46 @@ client.connect(err => {
         res.sendStatus(200);
     })
 
-
-
-    app.get('/api/images', async (req, res) => {
-        const { resources } = await cloudinary.search
-            .expression('folder:dev_setups')
-            .sort_by('public_id', 'desc')
-            .max_results(30)
-            .execute();
-
-        // const publicIds = resources.map((file) => file.public_id);
-        const publicIds = resources.map((file) => file.asset_id);
-        console.log(publicIds)
-        res.send(publicIds);
-    });
-
-
     app.post('/api/upload', async function (req, res) {
-        try {
-            const fileStr = req.body.data
-            const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-                upload_preset: 'dev_setups',
-            });
-            // res.json()
-            console.log(req.body.avatar)
-        } catch (error) {
-            console.error(error)
-        }
+        const fileStr = req.body.data
+        const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+            upload_preset: 'dev_setups',
+        });
         res.sendStatus(200);
     })
 
 
-    //DELETE
+// PATCH
+
+    app.patch('/changes/hero/:id', async function (req, res) {
+        const id = req.params.id
+        const body = req.body
+        const findResult = await heroesCollections.replaceOne({_id: ObjectId(id)}, {
+            nickName: body.nickName,
+            realName: body.realName,
+            catchPhrase: body.catchPhrase,
+            originDescription: body.originDescription,
+            superpowers: body.superpowers
+        });
+        res.sendStatus(200);
+    })
+
+    app.patch('/reset/avatar/:id', async function (req, res) {
+        const id = req.params.id
+        const findResult = await photosCollections.updateMany({hero: ObjectId(id)}, {$set: {avatar: false}})
+        const ssss = await photosCollections.find({hero: ObjectId(id)}).toArray();
+        console.log(ssss)
+        res.sendStatus(200);
+    })
+
+    app.patch('/set/avatar/:id', async function (req, res) {
+        const id = req.params.id
+        const findResult = await photosCollections.updateOne({_id: ObjectId(id)}, {$set: {avatar : true}})
+        res.sendStatus(200);
+    })
+
+
+//DELETE
 
     app.delete('/delete/hero/:id', async function (req, res) {
         const id = req.params.id
@@ -84,6 +102,7 @@ client.connect(err => {
         res.sendStatus(200);
     })
     const PORT = process.env.PORT || 3005
+
 
     app.listen(PORT, () => {
         console.log(`Connected server to port ${PORT}`)

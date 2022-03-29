@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
+// import {Image} from 'cloudinary-react'
 
-function Upload({text, hero = '', avatar = ''}) {
+
+function Upload({text, hero = '', avatar = '', setSubmitImage}) {
     const [fileInputState, setFileInputState] = useState('')
     // const [selectedFile, setSelectedFile] = useState('')
     const [previewSource, setPreviewSource] = useState()
@@ -19,6 +21,7 @@ function Upload({text, hero = '', avatar = ''}) {
     }
 
     const handelSubmitFile = (e) => {
+        setSubmitImage(true)
         e.preventDefault()
         if (!previewSource) return;
         uploadImage(previewSource)
