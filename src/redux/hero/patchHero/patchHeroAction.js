@@ -4,7 +4,7 @@ import {PATCH_HERO_STARTED, PATCH_HERO_SUCCESS, PATCH_HERO_FAILURE} from "../../
 export const patchHeroAction = (body) => {
     return async dispatch => {
         dispatch(patchHeroStarted())
-        fetch(`/changes/hero/${body.idOb}`, {
+        fetch(`patch/changes/hero/${body.idOb}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -15,6 +15,7 @@ export const patchHeroAction = (body) => {
                 catchPhrase: body.catchPhrase,
                 originDescription: body.originDescription,
                 superpowers: body.superpowers,
+                avatar: body.avatar
             })
         })
             .then(res => res.json())

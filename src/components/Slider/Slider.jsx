@@ -5,10 +5,9 @@ import "./Slider.scss"
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 
-function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, imageData, openModal}) {
+function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, openModal}) {
     const [data, setData] = useState([])
     const [numberPage, setNumberPage] = useState(null)
-
 
     useEffect(() => {
         if (arrayData.data.length >= 1) {
@@ -45,7 +44,8 @@ function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, imageDat
                                     <Card
                                         id={item._id}
                                         nickName={item.nickName}
-                                        avatar={imageData.data.filter(avatar => item._id === avatar.hero)}
+                                        avatar={item.avatar}
+                                        // avatar={imageData.data.filter(avatar => item._id === avatar.hero)}
                                     />
                                 </div>
                             })}

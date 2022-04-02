@@ -4,7 +4,7 @@ import {GET_HEROES_STARTED, GET_HEROES_SUCCESS, GET_HEROES_FAILURE} from "../typ
 export const getHeroesAction = () => {
     return async dispatch => {
         dispatch(getHeroesStarted())
-        fetch("/heroes")
+        fetch("/get/heroes")
             .then(res => res.json())
             .then(res => dispatch(getHeroesSuccess(res)))
             .catch(err => dispatch(getHeroesFailure(err.message)))

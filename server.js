@@ -22,46 +22,46 @@ client.connect(err => {
 
 //GET
 
-    app.get('/heroes', async function (req, res) {
-        const findResult = await heroesCollections.find({}).toArray();
-        res.send(findResult);
-    })
+    // app.get('/heroes', async function (req, res) {
+    //     const findResult = await heroesCollections.find({}).toArray();
+    //     res.send(findResult);
+    // })
 
-    app.get('/heroes-photos', async function (req, res) {
-        const findResult = await photosCollections.find({}).toArray();
-        res.send(findResult);
-    })
+    // app.get('/heroes-photos', async function (req, res) {
+    //     const findResult = await photosCollections.find({}).toArray();
+    //     res.send(findResult);
+    // })
 
-    app.get('/avatar', async function (req, res) {
-        const findResult = await photosCollections.find({avatar: true}).toArray();
-        res.send(findResult);
-    })
+    // app.get('/avatar', async function (req, res) {
+    //     const findResult = await photosCollections.find({avatar: true}).toArray();
+    //     res.send(findResult);
+    // })
 
-    app.get('/api/images', async (req, res) => {
-        const {resources} = await cloudinary.search
-            .expression('folder:dev_setups')
-            .sort_by('public_id', 'desc')
-            .max_results(30)
-            .execute();
-        res.send(resources);
-    });
+    // app.get('/api/images', async (req, res) => {
+    //     const {resources} = await cloudinary.search
+    //         .expression('folder:dev_setups')
+    //         .sort_by('public_id', 'desc')
+    //         .max_results(30)
+    //         .execute();
+    //     res.send(resources);
+    // });
 
 
 //POST
 
-    app.post('/add/hero', async function (req, res) {
-        const newHeroData = req.body
-        const findResult = await heroesCollections.insertOne(newHeroData);
-        res.sendStatus(200);
-    })
+    // app.post('/add/hero', async function (req, res) {
+    //     const newHeroData = req.body
+    //     const findResult = await heroesCollections.insertOne(newHeroData);
+    //     res.sendStatus(200);
+    // })
 
-    app.post('/api/upload', async function (req, res) {
-        const fileStr = req.body.data
-        const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-            upload_preset: 'dev_setups',
-        });
-        res.sendStatus(200);
-    })
+    // app.post('/api/upload', async function (req, res) {
+    //     const fileStr = req.body.data
+    //     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+    //         upload_preset: 'dev_setups',
+    //     });
+    //     res.sendStatus(200);
+    // })
 
 
 // PATCH
@@ -74,7 +74,8 @@ client.connect(err => {
             realName: body.realName,
             catchPhrase: body.catchPhrase,
             originDescription: body.originDescription,
-            superpowers: body.superpowers
+            superpowers: body.superpowers,
+            avatar: body.avatar,
         });
         res.sendStatus(200);
     })
@@ -96,11 +97,11 @@ client.connect(err => {
 
 //DELETE
 
-    app.delete('/delete/hero/:id', async function (req, res) {
-        const id = req.params.id
-        const findResult = await heroesCollections.deleteOne({_id: ObjectId(id)});
-        res.sendStatus(200);
-    })
+    // app.delete('/delete/hero/:id', async function (req, res) {
+    //     const id = req.params.id
+    //     const findResult = await heroesCollections.deleteOne({_id: ObjectId(id)});
+    //     res.sendStatus(200);
+    // })
     const PORT = process.env.PORT || 3005
 
 

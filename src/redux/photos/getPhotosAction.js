@@ -4,7 +4,7 @@ import {GET_PHOTOS_STARTED, GET_PHOTOS_SUCCESS, GET_PHOTOS_FAILURE} from "../typ
 export const getPhotosAction = () => {
     return async dispatch => {
         dispatch(getPhotosStarted())
-        fetch("/heroes-photos")
+        fetch("/get/heroes-photos")
             .then(res => res.json())
             .then(res => dispatch(getPhotosSuccess(res)))
             .catch(err => dispatch(getPhotosFailure(err.message)))

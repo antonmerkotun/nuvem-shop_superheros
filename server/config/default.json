@@ -1,0 +1,7 @@
+{
+  "serverPORT": 3005,
+  "dbURL": "mongodb+srv://antonmerkotun:1996178dD@cluster.q2nph.mongodb.net/heroes?retryWrites=true&w=majority",
+  "CLOUDINARY_NAME": "antonmerkotun",
+  "CLOUDINARY_API_KEY": "785824776245218",
+  "CLOUDINARY_API_SECRET": "Z-_hI8JDNQRGWUqqUUVxmSz98XA"
+}

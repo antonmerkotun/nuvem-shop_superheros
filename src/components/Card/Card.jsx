@@ -13,9 +13,9 @@ function Card({id, nickName, avatar}) {
                 }
             </div>
             <div className="card-body">
-                {avatar.length >= 1 ?
+                {avatar ?
                     <div className="card-body_image">
-                        <Avatar id={id} avatar={avatar[0].photo}/>
+                        <Avatar id={id} avatar={avatar}/>
                     </div>
                     : <div className="card-body_image">
                         <Avatar id={id}/>

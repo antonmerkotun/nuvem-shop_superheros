@@ -33,6 +33,7 @@
 
     &-block {
       margin-top: 10px;
+
     }
   }
 
@@ -61,5 +62,16 @@
   left: 0;
   background-color: transparent;
   color: white;
+}
+
+.more-image {
+  //height: 100px;
+  //width: 100px;
+  margin-bottom: 20px;
+}
+
+.description-span {
+  //max-width: 300px;
+  word-wrap: break-word;
 }
 

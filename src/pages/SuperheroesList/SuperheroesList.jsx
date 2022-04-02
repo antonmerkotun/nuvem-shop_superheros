@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./SuperheroesList.scss"
 
 //components
@@ -7,20 +7,24 @@ import Slider from "../../components/Slider/Slider";
 import CardInfo from "../../components/CardInfo/CardInfo";
 import Header from "../../components/Header/Header";
 
-function SuperheroesList({heroesData, avatarData, photosData}) {
+function SuperheroesList({heroesData, photosData}) {
     const [modal, setModal] = useState("close")
     const [hero, setHero] = useState('')
-    const [avatar, setAvatar] = useState('')
+    const [superPowers, setSuperPowers] = useState('')
+
+    useEffect(() => {
+        if (typeof hero.superpowers === "string"){
+            setSuperPowers(hero.superpowers.split(','))
+        }else {
+            setSuperPowers(hero.superpowers)
+        }
+
+    },[hero])
 
     const openModal = (event) => {
         heroesData.data.forEach(hero => {
             if (hero._id === event.target.id) {
                 setHero(hero)
-            }
-        })
-        avatarData.data.forEach(avatar => {
-            if (avatar.hero === event.target.id) {
-                setAvatar(avatar)
             }
         })
         setModal("info")
@@ -30,14 +34,6 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
         if (event.target.className === "modal" || event.target.className === "modal-button-close") {
             setModal("close")
         }
-    }
-
-    const photoSelection = (event) => {
-        photosData.data.forEach(photo => {
-            if (photo._id === event.target.id) {
-                setAvatar(photo)
-            }
-        })
     }
 
     const createNewHero = () => {
@@ -51,7 +47,6 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
                 <div className="superheroes-list">
                     <Slider
                         arrayData={heroesData}
-                        imageData={avatarData}
                         itemInPage={5}
                         buttonTextNext="Next >"
                         buttonTextPrev="< Prev"
@@ -65,19 +60,17 @@ function SuperheroesList({heroesData, avatarData, photosData}) {
                     closeModal={closeModal}
                 >
                     <CardInfo
+                        photosData={photosData}
                         hero={hero}
-                        avatar={avatar.photo}
+                        avatar={hero.avatar}
                         nickName={hero.nickName}
                         catchPhrase={hero.catchPhrase}
                         originDescription={hero.originDescription}
                         realName={hero.realName}
-                        superpowers={hero.superpowers}
+                        superpowers={superPowers}
                         images={photosData.data.filter(photo => photo.hero === hero._id)}
-                        photoSelection={photoSelection}
                         setCard="info"
                         setModal={setModal}
-                        avatarImage={avatar}
-                        setAvatar={setAvatar}
                     />
                 </Modal>}
             {modal === "create" &&
