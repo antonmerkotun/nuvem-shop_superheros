@@ -45,7 +45,6 @@ function Slider({arrayData, itemInPage, buttonTextPrev, buttonTextNext, openModa
                                         id={item._id}
                                         nickName={item.nickName}
                                         avatar={item.avatar}
-                                        // avatar={imageData.data.filter(avatar => item._id === avatar.hero)}
                                     />
                                 </div>
                             })}

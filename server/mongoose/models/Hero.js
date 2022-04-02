@@ -5,20 +5,20 @@ const heroSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     nickName: {
         type: String,
-        // required: true,
-        // unique: true
+        required: true,
+        unique: true
     },
     realName: {
         type: String,
-        // required: true,
+        required: true,
     },
     catchPhrase: {
         type: String,
-        // required: true,
+        required: true,
     },
     originDescription: {
         type: String,
-        // required: true,
+        required: true,
     },
     avatar: {
         type: String

@@ -6,8 +6,6 @@ import {useEffect} from "react";
 import SuperheroesList from "./pages/SuperheroesList/SuperheroesList"
 import {getHeroesAction} from "./redux/heroes/getHeroesAction";
 import {getPhotosAction} from "./redux/photos/getPhotosAction";
-import {getAvatarAction} from "./redux/avatar/getAvatarAction";
-import axios from "axios";
 
 function App() {
     const dispatch = useDispatch()

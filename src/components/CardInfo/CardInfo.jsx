@@ -6,17 +6,10 @@ import {useDispatch} from "react-redux";
 import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import {postHeroAction} from "../../redux/hero/postHero/postHeroAction";
 import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
 import {deleteHeroAction} from "../../redux/hero/deleteHero/deleteHeroAction";
 import Upload from "../Upload/Upload";
 import {patchHeroAction} from "../../redux/hero/patchHero/patchHeroAction";
-import {resetAvatarAction} from "../../redux/avatar/resetAvatar/resetAvatarAction";
-import {setAvatarAction} from "../../redux/avatar/setAvatar/setAvatarAction";
-import {getAvatarAction} from "../../redux/avatar/getAvatarAction";
-import axios from "axios";
-import {array} from "prop-types";
-
 
 function CardInfo({
                       hero,
@@ -58,7 +51,6 @@ function CardInfo({
     const saveHero = async () => {
         if (cardState === "edit") {
             if (typeof superpowersInput === "string") {
-                console.log('string')
                 const objectHero = {
                     idOb: hero._id,
                     nickName: nickNameInput,

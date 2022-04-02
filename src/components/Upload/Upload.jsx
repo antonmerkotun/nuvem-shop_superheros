@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import Button from "../Button/Button";
 import "./Upload.scss"
+
+//components
+import Button from "../Button/Button";
 
 function Upload({
                     cardState,

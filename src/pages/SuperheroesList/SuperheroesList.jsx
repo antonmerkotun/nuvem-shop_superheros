@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import "./SuperheroesList.scss"
 
 //components
@@ -10,16 +10,6 @@ import Header from "../../components/Header/Header";
 function SuperheroesList({heroesData, photosData}) {
     const [modal, setModal] = useState("close")
     const [hero, setHero] = useState('')
-    // const [superPowers, setSuperPowers] = useState('')
-
-    // useEffect(() => {
-    //     if (typeof hero.superpowers === "string"){
-    //         setSuperPowers(hero.superpowers.split(','))
-    //     }else {
-    //         setSuperPowers(hero.superpowers)
-    //     }
-    //
-    // },[hero])
 
     const openModal = (event) => {
         heroesData.data.forEach(hero => {
