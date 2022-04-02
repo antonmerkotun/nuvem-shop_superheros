@@ -60,7 +60,7 @@ function CardInfo({
                     superpowers: superpowersInput.split(','),
                     avatar: avatarUrl
                 }
-                dispatch(patchHeroAction(objectHero))
+              await dispatch(patchHeroAction(objectHero))
             }
             if (typeof superpowersInput === "object") {
                 const objectHero = {
@@ -72,11 +72,11 @@ function CardInfo({
                     superpowers: superpowersInput,
                     avatar: avatarUrl
                 }
-                dispatch(patchHeroAction(objectHero))
+              await dispatch(patchHeroAction(objectHero))
             }
         }
 
-        dispatch(getHeroesAction())
+       await dispatch(getHeroesAction())
         setModal("close")
     }
 

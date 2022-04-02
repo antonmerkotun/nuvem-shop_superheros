@@ -4,6 +4,9 @@ import "./Upload.scss"
 
 //components
 import Button from "../Button/Button";
+import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
+import {useDispatch} from "react-redux";
+import {getPhotosAction} from "../../redux/photos/getPhotosAction";
 
 function Upload({
                     cardState,
@@ -14,6 +17,7 @@ function Upload({
                     setModal,
                     superpowersInput,
                 }) {
+    const dispatch = useDispatch()
     const [fileInputState, setFileInputState] = useState('')
     const [previewSource, setPreviewSource] = useState()
     const [files, setFiles] = useState('')
@@ -40,10 +44,9 @@ function Upload({
 
     const uploadImage = async (base64EncodedImage) => {
         let superpowersArray
-        if (superpowersInput.length >= 1){
-             superpowersArray = superpowersInput.split(',')
+        if (superpowersInput.length >= 1) {
+            superpowersArray = superpowersInput.split(',')
         }
-        console.log(superpowersArray)
         if (cardState === "create") {
             await axios.post('/create/new-hero', {
                 data: base64EncodedImage,
@@ -55,6 +58,8 @@ function Upload({
                 superpowers: superpowersArray,
             })
         }
+        await dispatch(getHeroesAction())
+        await dispatch(getPhotosAction())
         setModal('close')
     }
 
