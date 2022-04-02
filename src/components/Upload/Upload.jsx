@@ -37,7 +37,11 @@ function Upload({
     }
 
     const uploadImage = async (base64EncodedImage) => {
-        const superpowersArray = superpowersInput.split(',')
+        let superpowersArray
+        if (superpowersInput.length >= 1){
+             superpowersArray = superpowersInput.split(',')
+        }
+        console.log(superpowersArray)
         if (cardState === "create") {
             await axios.post('/create/new-hero', {
                 data: base64EncodedImage,

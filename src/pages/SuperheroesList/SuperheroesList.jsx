@@ -10,16 +10,16 @@ import Header from "../../components/Header/Header";
 function SuperheroesList({heroesData, photosData}) {
     const [modal, setModal] = useState("close")
     const [hero, setHero] = useState('')
-    const [superPowers, setSuperPowers] = useState('')
+    // const [superPowers, setSuperPowers] = useState('')
 
-    useEffect(() => {
-        if (typeof hero.superpowers === "string"){
-            setSuperPowers(hero.superpowers.split(','))
-        }else {
-            setSuperPowers(hero.superpowers)
-        }
-
-    },[hero])
+    // useEffect(() => {
+    //     if (typeof hero.superpowers === "string"){
+    //         setSuperPowers(hero.superpowers.split(','))
+    //     }else {
+    //         setSuperPowers(hero.superpowers)
+    //     }
+    //
+    // },[hero])
 
     const openModal = (event) => {
         heroesData.data.forEach(hero => {
@@ -67,7 +67,7 @@ function SuperheroesList({heroesData, photosData}) {
                         catchPhrase={hero.catchPhrase}
                         originDescription={hero.originDescription}
                         realName={hero.realName}
-                        superpowers={superPowers}
+                        superpowers={hero.superpowers}
                         images={photosData.data.filter(photo => photo.hero === hero._id)}
                         setCard="info"
                         setModal={setModal}

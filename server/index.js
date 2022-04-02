@@ -4,7 +4,6 @@ const config = require('config');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const uploadImage = require('./routes/post_avatar');
-const getAvatar = require('./routes/get_avatar');
 const getHeroes = require('./routes/get_heroes');
 const getHeroesPhotos = require('./routes/get_heroes-photos');
 const deleteHero = require('./routes/delete_hero');
@@ -25,7 +24,6 @@ app.use(express.json());
 app.use('/create', createNewHero);
 
 app.use('/get', getHeroes);
-// app.use('/get', getAvatar);
 app.use('/get', getHeroesPhotos)
 
 app.use('/post', uploadImage);

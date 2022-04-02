@@ -57,20 +57,34 @@ function CardInfo({
 
     const saveHero = async () => {
         if (cardState === "edit") {
-            const objectHero = {
-                idOb: hero._id,
-                nickName: nickNameInput,
-                realName: realNameInput,
-                originDescription: originDescriptionInput,
-                catchPhrase: catchPhraseInput,
-                superpowers: superpowersInput,
-                avatar: avatarUrl
+            if (typeof superpowersInput === "string") {
+                console.log('string')
+                const objectHero = {
+                    idOb: hero._id,
+                    nickName: nickNameInput,
+                    realName: realNameInput,
+                    originDescription: originDescriptionInput,
+                    catchPhrase: catchPhraseInput,
+                    superpowers: superpowersInput.split(','),
+                    avatar: avatarUrl
+                }
+                dispatch(patchHeroAction(objectHero))
             }
-            dispatch(patchHeroAction(objectHero))
+            if (typeof superpowersInput === "object") {
+                const objectHero = {
+                    idOb: hero._id,
+                    nickName: nickNameInput,
+                    realName: realNameInput,
+                    originDescription: originDescriptionInput,
+                    catchPhrase: catchPhraseInput,
+                    superpowers: superpowersInput,
+                    avatar: avatarUrl
+                }
+                dispatch(patchHeroAction(objectHero))
+            }
         }
 
         dispatch(getHeroesAction())
-        // setAvatar('')
         setModal("close")
     }
 
@@ -122,18 +136,18 @@ function CardInfo({
                 <div className="card_info_nickname card_info-info-block">
                     <span className="card_info-info-text">Nickname:</span>
                     {cardState === "info" ? <span> {nickName}</span> :
-                            cardState === "edit" && <Input value={nickNameInput}
-                                                           setFunc={setNickNameInput}/>
+                        cardState === "edit" && <Input value={nickNameInput}
+                                                       setFunc={setNickNameInput}/>
                     }
                     {cardState === "create" && <Input value={nickNameInput}
-                                                         setFunc={setNickNameInput}/>
+                                                      setFunc={setNickNameInput}/>
                     }
                 </div>
                 <div className="card_info_realName card_info-info-block">
                     <span className="card_info-info-text">Real Name:</span>
                     {cardState === "info" ? <span> {realName}</span> :
-                            cardState === "edit" && <Input value={realNameInput}
-                                                           setFunc={setRealNameInput}/>
+                        cardState === "edit" && <Input value={realNameInput}
+                                                       setFunc={setRealNameInput}/>
                     }
                     {
                         cardState === "create" && <Input value={realNameInput}
@@ -143,35 +157,46 @@ function CardInfo({
                 <div className="card_info_origin-description card_info-info-block ">
                     <span className="card_info-info-text">Origin Description: </span>
                     {cardState === "info" ? <span className="description-span">{originDescription}</span> :
-                            cardState === "edit" && <textarea
-                                rows="9"
-                                className="description-textarea"
-                                value={originDescriptionInput}
-                                onChange={(e) => {
-                                    setOriginDescriptionInput(e.target.value)
-                                }}/>
-                    }
-                    {cardState === "create" && <textarea
+                        cardState === "edit" && <textarea
                             rows="9"
                             className="description-textarea"
                             value={originDescriptionInput}
                             onChange={(e) => {
                                 setOriginDescriptionInput(e.target.value)
-                            }}
-                        />
+                            }}/>
+                    }
+                    {cardState === "create" && <textarea
+                        rows="9"
+                        className="description-textarea"
+                        value={originDescriptionInput}
+                        onChange={(e) => {
+                            setOriginDescriptionInput(e.target.value)
+                        }}
+                    />
                     }
                 </div>
                 <div className="card_info_superpowers card_info-info-block">
                     <span className="card_info-info-text">Superpowers:</span>
-                    {cardState === "info" &&
-                        superpowers.map((superpower, index) => {
-                            return <li key={index}>{superpower}</li>
-                        })
+                    {cardState === "info" && <>
+                        {typeof superpowers === "string" &&
+                            superpowers.split(',').map((superpower, index) => {
+                                return <li key={index}>{superpower}</li>
+                            })
+                        }
+                        {typeof superpowers === "object" &&
+                            superpowers.map((superpower, index) => {
+                                return <li key={index}>{superpower}</li>
+                            })
+                        }
+                    </>
+                        // superpowers.map((superpower, index) => {
+                        //     return <li key={index}>{superpower}</li>
+                        // })
                     }
                     {cardState === "edit" && <textarea
                         rows="2"
                         className="description-textarea"
-                        value={superpowers}
+                        value={superpowersInput}
                         onChange={(e) => {
                             setSuperpowersInput(e.target.value)
                         }}
@@ -191,21 +216,21 @@ function CardInfo({
                 <div className="card_info_catchPhrase card_info-info-block">
                     <span className="card_info-info-text">Catch Phrase: </span>
                     {cardState === "info" ? <span className="description-span">{catchPhrase}</span> :
-                            cardState === "edit" && <textarea
-                                rows="2"
-                                className="description-textarea"
-                                value={catchPhraseInput}
-                                onChange={(e) => {
-                                    setCatchPhraseInput(e.target.value)
-                                }}/>
-                    }
-                    {cardState === "create" && <textarea
+                        cardState === "edit" && <textarea
                             rows="2"
                             className="description-textarea"
                             value={catchPhraseInput}
                             onChange={(e) => {
                                 setCatchPhraseInput(e.target.value)
                             }}/>
+                    }
+                    {cardState === "create" && <textarea
+                        rows="2"
+                        className="description-textarea"
+                        value={catchPhraseInput}
+                        onChange={(e) => {
+                            setCatchPhraseInput(e.target.value)
+                        }}/>
                     }
                 </div>
                 <div className="card_info-button">
