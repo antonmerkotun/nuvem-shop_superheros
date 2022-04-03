@@ -1,2 +1,2 @@
-start project: npm start
-start server: node server.js
+1) start project: npm start
+2) start server: cd/server node run dev
