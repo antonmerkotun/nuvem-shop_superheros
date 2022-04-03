@@ -21,3 +21,44 @@
   margin-top: 30px;
   margin-bottom: 10px;
 }
+
+.btn-select-avatar {
+  border: 1px solid rgba(255, 255, 255, 0.33);
+  border-radius: 5px;
+  padding: 8px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.preload-avatar {
+  margin-top: 10px;
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+.preload-all-image {
+  height: 100px;
+  display: flex;
+  //width: 100px;
+  margin-top: 30px;
+}
+
+.preload-avatar-button {
+  position: absolute;
+  top: 0;
+  left: 200px;
+
+}
+
+.preload-all-image-block {
+  height: 100%;
+  width: 100%;
+}
+
+.preload-all-image-button {
+  position: absolute;
+  left: 200px;
+  bottom: 180px;
+
+}

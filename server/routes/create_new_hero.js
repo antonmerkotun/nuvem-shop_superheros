@@ -10,7 +10,7 @@ router.post('/new-hero', async (req, res) => {
     const {nickName, realName, catchPhrase, originDescription, superpowers} = req.body
 
     try {
-        const fileStr = req.body.data
+        const fileStr = req.body.avatar
         const allImage = req.body.image
         const uploadAvatar = await cloudinary.uploader.upload(fileStr, {
             upload_preset: 'dev_setups',
@@ -30,7 +30,7 @@ router.post('/new-hero', async (req, res) => {
 
         if (allImage.length >= 1) {
             allImage.map(image => {
-                const uploadImage = cloudinary.uploader.upload(image, {
+                cloudinary.uploader.upload(image, {
                     upload_preset: 'images-hero',
                 })
                     .then(res => {
