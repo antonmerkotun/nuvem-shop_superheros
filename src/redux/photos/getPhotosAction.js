@@ -1,12 +1,12 @@
 import {GET_PHOTOS_STARTED, GET_PHOTOS_SUCCESS, GET_PHOTOS_FAILURE} from "../types";
+import axios from "axios";
 
 
 export const getPhotosAction = () => {
     return async dispatch => {
         dispatch(getPhotosStarted())
-        fetch("/get/heroes-photos")
-            .then(res => res.json())
-            .then(res => dispatch(getPhotosSuccess(res)))
+        axios.get('/get/heroes-photos')
+            .then(res => dispatch(getPhotosSuccess(res.data)))
             .catch(err => dispatch(getPhotosFailure(err.message)))
     }
 }

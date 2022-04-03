@@ -1,16 +1,11 @@
 import {DELETE_HERO_STARTED, DELETE_HERO_SUCCESS, DELETE_HERO_FAILURE} from "../../types";
+import axios from "axios";
 
 
 export const deleteHeroAction = (id) => {
     return async dispatch => {
         dispatch(deleteHeroStarted())
-        fetch(`/delete/hero/${id}`, {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        })
-            .then(res => res.json())
+        axios.delete(`/delete/hero/${id}`)
             .then(res => dispatch(deleteHeroSuccess(res)))
             .catch(err => dispatch(deleteHeroFailure(err.message)))
     }

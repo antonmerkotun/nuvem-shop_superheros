@@ -1,12 +1,12 @@
 import {GET_HEROES_STARTED, GET_HEROES_SUCCESS, GET_HEROES_FAILURE} from "../types";
+import axios from "axios";
 
 
 export const getHeroesAction = () => {
     return async dispatch => {
         dispatch(getHeroesStarted())
-        fetch("/get/heroes")
-            .then(res => res.json())
-            .then(res => dispatch(getHeroesSuccess(res)))
+        axios.get('/get/heroes')
+            .then(res => dispatch(getHeroesSuccess(res.data)))
             .catch(err => dispatch(getHeroesFailure(err.message)))
     }
 }
