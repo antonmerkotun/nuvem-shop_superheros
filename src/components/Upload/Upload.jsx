@@ -88,11 +88,11 @@ function Upload({
                     {preloadAvatar && <div className="preload-avatar-button">
                         <Button text="Delete avatar" onClick={deleteAvatar} color="#ffffff"/>
                     </div>}
-                    {!isAvatar && <p className="select-avatar">select avatar</p>}
+                    {!isAvatar && <p className="select-avatar">Select an avatar</p>}
                 </div>
             </div>
             <div>
-                <label className='btn-select-avatar' htmlFor="files">Add all images</label>
+                <label className='btn-select-avatar' htmlFor="files">Select all the pictures</label>
                 <input id='files' multiple={true} type="file" style={{visibility: "hidden"}}
                        onChange={handelAllImageInputChange}/>
                 <div className="preload-all-image">

@@ -33,12 +33,12 @@
 
 .preload-avatar {
   margin-top: 10px;
-  height: 250px;
+  height: 300px;
   margin-bottom: 20px;
 }
 
 .preload-all-image {
-  height: 100px;
+  height: 150px;
   display: flex;
   //width: 100px;
   margin-top: 30px;
@@ -48,7 +48,6 @@
   position: absolute;
   top: 0;
   left: 200px;
-
 }
 
 .preload-all-image-block {
@@ -59,12 +58,12 @@
 .preload-all-image-button {
   position: absolute;
   left: 200px;
-  bottom: 180px;
+  bottom: 230px;
 }
 
 .select-avatar {
   position: absolute;
   top: -15px;
-  left: 340px;
+  left: 320px;
   color: #FF0000FF;
 }

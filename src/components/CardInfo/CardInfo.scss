@@ -6,8 +6,7 @@
     height: 80%;
 
     &-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      display: flex;
       height: 25%;
       width: 100%;
     }
