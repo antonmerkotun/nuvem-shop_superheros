@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./CardInfo.scss"
+import axios from "axios";
 import {useDispatch} from "react-redux";
+import {getPhotosAction} from "../../redux/photos/getPhotosAction";
+import {patchHeroAction} from "../../redux/hero/patchHero/patchHeroAction";
+import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
+import {deleteHeroAction} from "../../redux/hero/deleteHero/deleteHeroAction";
 
 //components
 import Avatar from "../Avatar/Avatar";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
-import {deleteHeroAction} from "../../redux/hero/deleteHero/deleteHeroAction";
 import Upload from "../Upload/Upload";
-import {patchHeroAction} from "../../redux/hero/patchHero/patchHeroAction";
-import axios from "axios";
-import {getPhotosAction} from "../../redux/photos/getPhotosAction";
 
 function CardInfo({
                       hero,
@@ -28,7 +28,6 @@ function CardInfo({
                   }) {
     const dispatch = useDispatch()
     const [cardState, setCardState] = useState(setCard)
-
     const [nickNameInput, setNickNameInput] = useState(nickName)
     const [realNameInput, setRealNameInput] = useState(realName)
     const [originDescriptionInput, setOriginDescriptionInput] = useState(originDescription)
@@ -36,6 +35,9 @@ function CardInfo({
     const [superpowersInput, setSuperpowersInput] = useState(superpowers)
     const [deleteImg, setDeleteImg] = useState()
 
+    useEffect(() => {
+        dispatch(getPhotosAction())
+    },[])
 
     const [avatarUrl, setAvatarUrl] = useState(avatar)
     const photoSelection = (event) => {
@@ -101,7 +103,6 @@ function CardInfo({
         await dispatch(getPhotosAction())
     }
 
-
     return (
         <>
             <div className="card_info-image">
@@ -136,8 +137,7 @@ function CardInfo({
                             </div>
                         })
                     }
-                    {cardState === "edit" &&
-                        images.map(image => {
+                    {cardState === "edit" && images.map(image => {
                             return <div className="card_info-image-mini" key={image._id} id={image._id}
                                         onClick={photoSelection}>
                                 <Avatar avatar={image.url} id={image._id}/>
@@ -163,9 +163,8 @@ function CardInfo({
                         cardState === "edit" && <Input value={realNameInput}
                                                        setFunc={setRealNameInput}/>
                     }
-                    {
-                        cardState === "create" && <Input value={realNameInput}
-                                                         setFunc={setRealNameInput}/>
+                    {cardState === "create" && <Input value={realNameInput}
+                                                      setFunc={setRealNameInput}/>
                     }
                 </div>
                 <div className="card_info_origin-description card_info-info-block ">
@@ -203,9 +202,6 @@ function CardInfo({
                             })
                         }
                     </>
-                        // superpowers.map((superpower, index) => {
-                        //     return <li key={index}>{superpower}</li>
-                        // })
                     }
                     {cardState === "edit" && <textarea
                         rows="2"

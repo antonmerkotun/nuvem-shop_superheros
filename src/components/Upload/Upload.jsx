@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import "./Upload.scss"
+import {useDispatch} from "react-redux";
+import {getPhotosAction} from "../../redux/photos/getPhotosAction";
+import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
 
 //components
 import Button from "../Button/Button";
-import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
-import {useDispatch} from "react-redux";
-import {getPhotosAction} from "../../redux/photos/getPhotosAction";
 import Avatar from "../Avatar/Avatar";
 
 function Upload({
