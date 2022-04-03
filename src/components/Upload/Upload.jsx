@@ -19,10 +19,12 @@ function Upload({
                     superpowersInput,
                 }) {
     const dispatch = useDispatch()
-    const [preloadAvatar, setPreloadAvatar] = useState('')
+    const [preloadAvatar, setPreloadAvatar] = useState()
     const [preloadAllImage, setPreloadAllImage] = useState('')
+    const [isAvatar, setIsAvatar] = useState(true)
 
     const handelAvatarInputChange = (e) => {
+        setIsAvatar(true)
         const file = e.target.files[0]
         const reader = new FileReader()
         reader.onload = ev => {
@@ -54,6 +56,10 @@ function Upload({
             superpowersArray = superpowersInput.split(',')
         }
         if (cardState === "create") {
+            if (!preloadAvatar) {
+                setIsAvatar(false)
+                return
+            }
             await axios.post('/create/new-hero', {
                 avatar: preloadAvatar,
                 nickName: nickNameInput,
@@ -63,6 +69,9 @@ function Upload({
                 image: preloadAllImage,
                 superpowers: superpowersArray,
             })
+                .then(res => {
+                    console.log(res)
+                })
         }
         await dispatch(getHeroesAction())
         await dispatch(getPhotosAction())
@@ -79,6 +88,7 @@ function Upload({
                     {preloadAvatar && <div className="preload-avatar-button">
                         <Button text="Delete avatar" onClick={deleteAvatar} color="#ffffff"/>
                     </div>}
+                    {!isAvatar && <p className="select-avatar">select avatar</p>}
                 </div>
             </div>
             <div>

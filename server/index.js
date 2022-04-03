@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 const config = require('config');
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const createNewHero = require('./routes/create_new_hero')
 const uploadImage = require('./routes/post_avatar');
 const getHeroes = require('./routes/get_heroes');
 const getHeroesPhotos = require('./routes/get_heroes-photos');
-const deleteHero = require('./routes/delete_hero');
 const postImage = require('./routes/post_images');
-const createNewHero = require('./routes/create_new_hero')
 const changesHero = require('./routes/post_changes-hero')
+const deleteHero = require('./routes/delete_hero');
+const deleteImage = require('./routes/delete_image')
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.use('/post', postImage);
 app.use('/patch', changesHero);
 
 app.use('/delete', deleteHero);
+app.use('/delete', deleteImage);
 
 const start = async () => {
     try {

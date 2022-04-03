@@ -10,6 +10,8 @@ import {getHeroesAction} from "../../redux/heroes/getHeroesAction";
 import {deleteHeroAction} from "../../redux/hero/deleteHero/deleteHeroAction";
 import Upload from "../Upload/Upload";
 import {patchHeroAction} from "../../redux/hero/patchHero/patchHeroAction";
+import axios from "axios";
+import {getPhotosAction} from "../../redux/photos/getPhotosAction";
 
 function CardInfo({
                       hero,
@@ -32,6 +34,7 @@ function CardInfo({
     const [originDescriptionInput, setOriginDescriptionInput] = useState(originDescription)
     const [catchPhraseInput, setCatchPhraseInput] = useState(catchPhrase)
     const [superpowersInput, setSuperpowersInput] = useState(superpowers)
+    const [deleteImg, setDeleteImg] = useState()
 
 
     const [avatarUrl, setAvatarUrl] = useState(avatar)
@@ -39,6 +42,7 @@ function CardInfo({
         photosData.data.forEach(photo => {
             if (photo._id === event.target.id) {
                 setAvatarUrl(photo.url)
+                setDeleteImg(photo)
             }
         })
     }
@@ -60,7 +64,7 @@ function CardInfo({
                     superpowers: superpowersInput.split(','),
                     avatar: avatarUrl
                 }
-              await dispatch(patchHeroAction(objectHero))
+                await dispatch(patchHeroAction(objectHero))
             }
             if (typeof superpowersInput === "object") {
                 const objectHero = {
@@ -72,11 +76,12 @@ function CardInfo({
                     superpowers: superpowersInput,
                     avatar: avatarUrl
                 }
-              await dispatch(patchHeroAction(objectHero))
+                await dispatch(patchHeroAction(objectHero))
             }
         }
 
-       await dispatch(getHeroesAction())
+        await dispatch(getHeroesAction())
+        await dispatch(getPhotosAction())
         setModal("close")
     }
 
@@ -87,12 +92,29 @@ function CardInfo({
         await dispatch(getHeroesAction())
     }
 
+    const deleteImage = async (e) => {
+        console.log(deleteImg)
+        if (deleteImg) {
+            await axios.delete(`delete/image/${deleteImg._id}`)
+        }
+        setAvatarUrl('')
+        await dispatch(getPhotosAction())
+    }
+
 
     return (
         <>
             <div className="card_info-image">
                 {cardState === 'info' && <Avatar avatar={avatarUrl}/>}
-                {cardState === 'edit' && <Avatar avatar={avatarUrl}/>}
+                {cardState === 'edit' &&
+                    <>
+                        <Avatar avatar={avatarUrl}/>
+                        <div className="button-delete-image">
+                            <Button onClick={deleteImage} text="Delete this image" color="#FF0000FF" width="150px"
+                                    height="30px"/>
+                        </div>
+                    </>
+                }
                 {cardState === "create" &&
                     <Upload cardState={cardState}
                             submitForm={saveHero}
@@ -240,7 +262,7 @@ function CardInfo({
                                     text="Delete hero"
                                     width="150px"
                                     height="30px"
-                                    color="#ffffff"
+                                    color="#FF0000FF"
                             />
                             <Button onClick={saveHero}
                                     text="Save"

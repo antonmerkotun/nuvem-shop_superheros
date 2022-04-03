@@ -48,6 +48,7 @@ router.post('/new-hero', async (req, res) => {
         return res.json({message: "Hero created"})
     } catch (error) {
         console.log(error)
+        res.sendStatus(400);
         res.send({message: 'Server errors'})
     }
 });
